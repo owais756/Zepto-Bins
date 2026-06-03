@@ -6,53 +6,51 @@
 }
 
 body{
-    padding:20px;
-    background:#f5f5f5;
-    min-width:1280px;
+    background:linear-gradient(
+        135deg,
+        #6A0DAD,
+        #8A2BE2,
+        #9D4EDD
+    );
+    min-height:100vh;
+    padding:15px;
 }
 
 h1{
     text-align:center;
-    margin-bottom:25px;
+    margin-bottom:20px;
+    color:white;
+    font-size:2rem;
+    font-weight:bold;
 }
 
-.grid-wrapper{
-    width:100%;
-    overflow-x:auto;
-}
+/* Responsive Grid */
 
 #grid-container{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    width:max-content;
-}
-
-.row{
     display:grid;
-    grid-template-columns:repeat(9, 130px);
-    gap:12px;
+    grid-template-columns:repeat(auto-fit,minmax(90px,1fr));
+    gap:10px;
 }
 
 .box{
-    width:130px;
-    height:80px;
-    border:2px solid #000;
+    min-height:70px;
     display:flex;
     justify-content:center;
     align-items:center;
+    border:2px solid rgba(255,255,255,0.3);
+    border-radius:12px;
     font-weight:bold;
-    font-size:16px;
     cursor:pointer;
     transition:0.2s;
     user-select:none;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
 }
 
 .box:hover{
     transform:scale(1.05);
 }
 
-/* Colors */
+/* Box Colors */
 
 .blue{
     background:#2196F3;
@@ -93,24 +91,26 @@ h1{
 
 .modal-content{
     background:white;
-    width:420px;
-    max-width:90%;
-    padding:25px;
-    border-radius:10px;
+    width:90%;
+    max-width:400px;
+    padding:20px;
+    border-radius:15px;
     text-align:center;
     position:relative;
+    box-shadow:0 8px 25px rgba(0,0,0,0.25);
 }
 
 #close-btn{
     position:absolute;
-    top:10px;
     right:15px;
+    top:10px;
     font-size:30px;
     cursor:pointer;
 }
 
 #itemText{
-    margin-bottom:20px;
+    margin-bottom:15px;
+    color:#6A0DAD;
 }
 
 #qrcode{
@@ -121,25 +121,45 @@ h1{
 
 #barcode{
     width:100%;
-    margin-top:20px;
+    margin-top:15px;
 }
 
-/* Toast */
+/* Toast Notification */
 
 #toast{
     position:fixed;
     bottom:20px;
     right:20px;
-    background:#333;
-    color:#fff;
+    background:#ffffff;
+    color:#6A0DAD;
     padding:12px 20px;
-    border-radius:8px;
+    border-radius:10px;
+    font-weight:bold;
     opacity:0;
     pointer-events:none;
     transition:0.3s;
     z-index:9999;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
 }
 
 #toast.show{
     opacity:1;
+}
+
+/* Mobile Optimization */
+
+@media(max-width:480px){
+
+    h1{
+        font-size:1.5rem;
+    }
+
+    .box{
+        min-height:60px;
+        font-size:14px;
+    }
+
+    .modal-content{
+        width:95%;
+    }
 }
