@@ -8,12 +8,7 @@ const rows = [
     { prefix: "RED", colorClass: "red" }
 ];
 
-// Generate Boxes
-
 rows.forEach(rowData => {
-
-    const row = document.createElement("div");
-    row.className = "row";
 
     for(let i = 1; i <= 9; i++){
 
@@ -27,27 +22,19 @@ rows.forEach(rowData => {
             showQRBarcode(label);
         });
 
-        row.appendChild(box);
+        container.appendChild(box);
     }
-
-    container.appendChild(row);
 });
-
-// Elements
 
 const modal = document.getElementById("modal");
 const closeBtn = document.getElementById("close-btn");
 const itemText = document.getElementById("itemText");
 const toast = document.getElementById("toast");
 
-// Function
-
 function showQRBarcode(text){
 
-    // Copy Text
     navigator.clipboard.writeText(text);
 
-    // Toast
     toast.textContent = `${text} copied!`;
     toast.classList.add("show");
 
@@ -55,21 +42,17 @@ function showQRBarcode(text){
         toast.classList.remove("show");
     }, 2000);
 
-    // Modal Text
     itemText.textContent = text;
 
-    // Clear Previous QR
     const qrContainer = document.getElementById("qrcode");
     qrContainer.innerHTML = "";
 
-    // Generate QR
     new QRCode(qrContainer,{
         text:text,
         width:200,
         height:200
     });
 
-    // Generate Barcode
     JsBarcode("#barcode", text, {
         format:"CODE128",
         width:2,
@@ -79,8 +62,6 @@ function showQRBarcode(text){
 
     modal.style.display = "flex";
 }
-
-// Close Modal
 
 closeBtn.addEventListener("click", () => {
     modal.style.display = "none";
